@@ -12,11 +12,48 @@
     <div class="settings">
       <label for="timelimit">Zeitlimit pro Frage (Sekunden): <input type="number" id="timelimit" min="5" max="120" value="20"></label>
       <button id="startBtn">Spiel starten</button>
+      <button id="settingsBtn">⚙️ Einstellungen</button>
+      <button id="statsBtn">📊 Statistik</button>
     </div>
+    
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hide">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>⚙️ Länder-Einstellungen</h2>
+        <div id="continentSettings"></div>
+        <button id="saveSettingsBtn">Speichern</button>
+      </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="statsModal" class="modal hide">
+      <div class="modal-content">
+        <span class="close-stats">&times;</span>
+        <h2>📊 Statistik</h2>
+        <div class="stats-controls">
+          <label for="topCount">Anzahl anzeigen: 
+            <input type="number" id="topCount" min="5" max="50" value="10">
+          </label>
+        </div>
+        <div class="stats-container">
+          <div class="stats-section">
+            <h3 style="color: #97e47c;">✅ Am häufigsten richtig</h3>
+            <div id="topCorrect"></div>
+          </div>
+          <div class="stats-section">
+            <h3 style="color: #ff6b6b;">❌ Am häufigsten falsch</h3>
+            <div id="topWrong"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="game" class="hide">
       <div id="score"></div>
       <div id="timer"></div>
       <div id="country"></div>
+      <div id="countryStats" class="country-stats"></div>
       <input type="text" id="answer" autocomplete="off" placeholder="Hauptstadt eingeben...">
       <button id="submitBtn">Antwort prüfen</button>
       <button id="tipBtn">Tipp</button>
