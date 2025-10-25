@@ -94,6 +94,10 @@ window.onclick = function(event) {
   }
 };
 
+function sanitizeContinentId(continent) {
+  return continent.replace(/[^a-zA-Z0-9]/g, '-');
+}
+
 function showSettingsModal() {
   // Gruppiere Länder nach Kontinent
   const continents = {};
@@ -106,12 +110,13 @@ function showSettingsModal() {
 
   let html = '';
   Object.keys(continents).sort().forEach(continent => {
+    const continentId = sanitizeContinentId(continent);
     html += `<div class="continent-section">
       <h3>
-        <input type="checkbox" id="continent-${continent}" class="continent-checkbox" data-continent="${continent}">
-        <label for="continent-${continent}">${continent}</label>
+        <input type="checkbox" id="continent-${continentId}" class="continent-checkbox" data-continent="${continent}">
+        <label for="continent-${continentId}">${continent}</label>
       </h3>
-      <div class="country-list" id="countries-${continent}">`;
+      <div class="country-list" id="countries-${continentId}">`;
     
     continents[continent].forEach(country => {
       const checked = enabledCountries[country.name] ? 'checked' : '';
@@ -132,7 +137,8 @@ function showSettingsModal() {
     updateContinentCheckbox(continent);
     
     cb.addEventListener('change', function() {
-      const countryCheckboxes = document.querySelectorAll(`#countries-${continent} input[type="checkbox"]`);
+      const continentId = sanitizeContinentId(continent);
+      const countryCheckboxes = document.querySelectorAll(`#countries-${continentId} input[type="checkbox"]`);
       countryCheckboxes.forEach(ccb => {
         ccb.checked = this.checked;
       });
@@ -149,8 +155,9 @@ function showSettingsModal() {
 }
 
 function updateContinentCheckbox(continent) {
-  const continentCb = document.getElementById(`continent-${continent}`);
-  const countryCheckboxes = document.querySelectorAll(`#countries-${continent} input[type="checkbox"]`);
+  const continentId = sanitizeContinentId(continent);
+  const continentCb = document.getElementById(`continent-${continentId}`);
+  const countryCheckboxes = document.querySelectorAll(`#countries-${continentId} input[type="checkbox"]`);
   const checkedCount = Array.from(countryCheckboxes).filter(cb => cb.checked).length;
   
   if (checkedCount === 0) {
