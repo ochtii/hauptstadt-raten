@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Hauptstadt-Raten Spiel</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Hauptstadt-Raten Spiel</h1>
+    <div class="settings">
+      <label for="timelimit">Zeitlimit pro Frage (Sekunden): <input type="number" id="timelimit" min="5" max="120" value="20"></label>
+      <button id="startBtn">Spiel starten</button>
+    </div>
+    <div id="game" class="hide">
+      <div id="score"></div>
+      <div id="timer"></div>
+      <div id="country"></div>
+      <input type="text" id="answer" autocomplete="off" placeholder="Hauptstadt eingeben...">
+      <button id="submitBtn">Antwort prüfen</button>
+      <button id="tipBtn">Tipp</button>
+      <div id="tip"></div>
+      <div id="feedback"></div>
+      <button id="nextBtn" class="hide">Nächste Frage</button>
+      <button id="endBtn" class="hide">Spiel beenden</button>
+    </div>
+    <div id="result" class="hide"></div>
+  </div>
+  <script src="countries.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
