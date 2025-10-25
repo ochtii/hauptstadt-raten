@@ -99,6 +99,8 @@ function sanitizeContinentId(continent) {
 }
 
 function showSettingsModal() {
+  settingsModal.classList.remove("hide");
+  
   // Gruppiere Länder nach Kontinent
   const continents = {};
   countries.forEach(c => {
